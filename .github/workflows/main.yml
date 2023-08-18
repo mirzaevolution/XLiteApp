@@ -1,0 +1,28 @@
+name: XLiteApp
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Stop XLiteApp
+      run: appcmd stop sites "XLiteApp"
+    - name: Publish Release
+      run: dotnet publish --configuration Release -o C:\Websites\XLiteApp
+    - name: Start XLiteApp
+      run: appcmd start sites XLiteApp
