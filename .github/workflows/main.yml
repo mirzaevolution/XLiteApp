@@ -21,8 +21,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Stop XLiteApp
-      run: appcmd stop sites "XLiteApp"
+      run: C:\Windows\System32\inetsrv\appcmd.exe stop site "XLiteApp"
     - name: Publish Release
       run: dotnet publish --configuration Release -o C:\Websites\XLiteApp
     - name: Start XLiteApp
-      run: appcmd start sites XLiteApp
+      run: C:\Windows\System32\inetsrv\appcmd.exe start site XLiteApp
