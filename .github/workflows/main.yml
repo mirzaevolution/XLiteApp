@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted-vm-#1
+    runs-on: self-hosted-vm-#2
     
     defaults:
       run:
